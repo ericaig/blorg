@@ -16,6 +16,11 @@ npx prisma migrate dev --name initial_migration
 dotenv -e .env.development -- npx prisma migrate dev --name initial_migration
 ```
 
+After modifying schema.prisma, run the following to apply changes
+```bash
+npx prisma migrate dev --name added_job_title
+```
+
 Run generate using:
 ```bash
 npx prisma generate

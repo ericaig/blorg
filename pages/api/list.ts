@@ -1,21 +1,29 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { User, Prisma } from '@prisma/client';
 import prisma from '../../lib-server/prisma'
+import { compare } from 'bcryptjs';
+import { excludePasswordFromUser } from '../../lib-server/utils';
 
-type Data = {
-    users: Prisma.UserCreateInput[],
-}
+async function create(_req: NextApiRequest, res: NextApiResponse) {
+    let u = { message: "Did not find user", user: {} }
 
-async function create(_req: NextApiRequest, res: NextApiResponse<Data>) {
-    // const p = prisma as PrismaClient
+    const user = await prisma.user.findFirst({
+        where: {
+            email: "osas@example.com"
+        },
+    })
+
+    if (user) {
+        const same = await compare("123456", user.password)
+
+        if (same) {
+            u = { message: "ok", user: excludePasswordFromUser(user) }
+        }
+    }
+
 
     res.status(200).json({
-        users: await prisma.user.findMany({
-            select: {
-                name: true,
-                email: true,
-            }
-        })
+        users: u
     })
 }
 

@@ -2,7 +2,9 @@ import React from "react";
 import Head from "next/head";
 import { Button, Card, Container, Form } from "react-bootstrap";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { userSignupSchema } from "../lib-server/validations";
 
 type FormData = {
   name: string;
@@ -19,8 +21,10 @@ export default function Signup() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<FormData>({ resolver: zodResolver(userSignupSchema) });
+
   const onSubmit = (data: FormData) => console.log(data);
+  const onInvalid = (data) => console.log(data);
 
   // console.log(watch("name"));
 
@@ -37,7 +41,7 @@ export default function Signup() {
           <Card>
             <Card.Body>
               <h2 className="text-center mb-4">Sign up</h2>
-              <Form onSubmit={handleSubmit(onSubmit)}>
+              <Form onSubmit={handleSubmit(onSubmit, onInvalid)}>
                 <Form.Group id="name" className="mb-3">
                   <Form.Label>Name</Form.Label>
                   <Form.Control
