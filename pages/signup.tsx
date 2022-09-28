@@ -52,14 +52,6 @@ export default function Signup() {
                     {...register("surnames", { required: true })}
                   ></Form.Control>
                 </Form.Group>
-                <Form.Group id="username" className="mb-3">
-                  <Form.Label>Username</Form.Label>
-                  <Form.Control
-                    type="text"
-                    {...register("username", { required: true })}
-                  ></Form.Control>
-                </Form.Group>
-                <hr />
                 <Form.Group id="email" className="mb-3">
                   <Form.Label>Email</Form.Label>
                   <Form.Control
