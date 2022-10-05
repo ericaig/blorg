@@ -16,6 +16,11 @@ npx prisma migrate dev --name initial_migration
 dotenv -e .env.development -- npx prisma migrate dev --name initial_migration
 ```
 
+After modifying schema.prisma, run the following to apply changes
+```bash
+npx prisma migrate dev --name added_job_title
+```
+
 Run generate using:
 ```bash
 npx prisma generate
@@ -29,3 +34,8 @@ jest -i
 # or
 dotenv -e .env.test jest -i
 ```
+
+
+## Useful SWR resources
+
+- [Optimistic UI](https://github.com/vercel/swr/blob/main/examples/optimistic-ui/pages/index.js)
