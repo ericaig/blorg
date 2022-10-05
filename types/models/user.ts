@@ -6,6 +6,6 @@ import { User } from "@prisma/client";
 export type UserModel = Omit<User, 'password'>;
 
 
-export type UserCreateFormData = Omit<User, 'id'> & {
+export type UserCreateFormData = Omit<User, 'id' | 'emailVerified'> & {
     confirmPassword: string;
 }

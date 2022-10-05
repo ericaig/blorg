@@ -23,7 +23,7 @@ export default class ApiError extends Error {
 }
 
 export const handleApiError = (error: any, req: NextApiRequest, res: NextApiResponse) => {
-    console.error('handled API error: ', error);
+    // console.error('handled API error: ', error);
     const isProd = process.env.NODE_ENV === 'production';
 
     const response = {

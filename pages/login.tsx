@@ -10,19 +10,11 @@ type FormData = {
 };
 
 export default function Login() {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-    getValues,
-  } = useForm<FormData>();
+  const { register, handleSubmit } = useForm<FormData>();
 
   const onSubmit = (data: FormData) => {
     console.log(data);
   };
-
-  // console.log(watch("name"));
 
   return (
     <>
@@ -59,7 +51,7 @@ export default function Login() {
             </Card.Body>
           </Card>
           <div className="w-100 text-center mt-3">
-            Don't have an account? <Link href={"/signup"}>Sign up</Link>
+            {"Don't have an account?"} <Link href={"/signup"}>Sign up</Link>
           </div>
         </div>
       </Container>

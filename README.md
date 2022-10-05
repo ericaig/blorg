@@ -34,3 +34,8 @@ jest -i
 # or
 dotenv -e .env.test jest -i
 ```
+
+
+## Useful SWR resources
+
+- [Optimistic UI](https://github.com/vercel/swr/blob/main/examples/optimistic-ui/pages/index.js)

@@ -4,13 +4,17 @@ import ApiError from '../error';
 import prisma from "../prisma"
 import { excludePasswordFromUser } from '../utils';
 
+const getUserByEmail = async (email: string): Promise<UserModel | null> => {
+    return prisma.user.findFirst({
+        where: { email },
+    });
+}
+
 export const createUser = async (data: UserCreateFormData): Promise<UserModel> => {
     const { name, surnames, email, password: pwd } = data;
 
     // let's check if the email already exist or not
-    const emailExists = await prisma.user.findFirst({
-        where: { email },
-    });
+    const emailExists = await getUserByEmail(email);
 
     if (emailExists) throw new ApiError(`User with email: ${email} already exists.`, 409);
 
@@ -26,7 +30,7 @@ export const createUser = async (data: UserCreateFormData): Promise<UserModel> =
         }
     })
 
-    if (!user) throw new ApiError('User cerate failed.', 400);
+    if (!user) throw new ApiError('There was an error creating this user', 400);
 
     return excludePasswordFromUser(user)
 }

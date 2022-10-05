@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-const passwordMin = 6,
+const passwordMin = 4,
     passwordMax = 20,
     nameMin = 2,
     nameMax = 25,
