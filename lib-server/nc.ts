@@ -7,6 +7,7 @@ export const ncOptions: Options<NextApiRequest, NextApiResponse<any>> = {
         handleApiError(error, req, res);
     },
     onNoMatch(req: NextApiRequest, res: NextApiResponse) {
+        // console.log({ req, res })
         const error = new ApiError(`Method '${req.method}' not allowed`, 405);
         //not in api, handle it manually
         handleApiError(error, req, res);
