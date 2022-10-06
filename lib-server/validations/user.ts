@@ -18,6 +18,12 @@ const userSignupSchema = z.object({
         path: ['confirmPassword'],
     })
 
+const userLoginSchema = z.object({
+    email: z.string().email(),
+    password: z.string().min(passwordMin).max(passwordMax),
+});
+
 export {
-    userSignupSchema
+    userSignupSchema,
+    userLoginSchema
 }
